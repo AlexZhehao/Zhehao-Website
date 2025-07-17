@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Zhehao</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      margin-top: 30px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px;
+    }
+    .gallery img {
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+<h1>My Photos</h1>
+<div class="gallery">
+  <img src="Photos/加州1.jpg" alt="照片1">
+  <img src="Photos/加州2.jpg" alt="照片2">
+  <img src="Photos/加州3.jpg" alt="照片3">
+  <!-- 想加更多就复制一行换文件名即可 -->
+</div>
+</body>
+</html>

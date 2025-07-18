@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Footprint Map - ZHEHAO</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      color: #333;
+    }
+    header {
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      padding: 20px 40px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 24px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    main {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #map {
+      width: 100%;
+      max-width: 1000px;
+      height: 600px;
+      border: 4px solid #e0e0e0;
+      border-radius: 10px;
+    }
+    footer {
+      margin-top: 60px;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">ZHEHAO</div>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="memory.html">Memory</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="footprint.html">Footprint Map</a></li>
+      <li><a href="about.html">About me</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h2 style="margin-bottom: 20px;">ZHEHAO 的足迹地图</h2>
+  <div id="map"></div>
+</main>
+
+<footer>
+  © ZHEHAO 2025
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map', {
+    center: [20, 0],
+    zoom: 2,
+    minZoom: 2,
+    maxZoom: 8,
+    maxBounds: [
+      [-85, -180],
+      [85, 180]
+    ],
+    maxBoundsViscosity: 1.0,
+    worldCopyJump: false
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    noWrap: true,
+    bounds: [
+      [-85, -180],
+      [85, 180]
+    ]
+  }).addTo(map);
+
+  // San Diego, CA
+  const sdMarker = L.marker([32.7157, -117.1611]).addTo(map);
+
+  // 用一个 span 作为“点击进入”的触发器
+  sdMarker.bindPopup(
+          '<b>San Diego, USA</b><br>' +
+          '<span id="sd-link" style="color:#0066cc; text-decoration:underline; cursor:pointer;">点击进入</span>'
+  );
+
+  // 当弹窗打开时，给它绑定跳转事件
+  sdMarker.on('popupopen', () => {
+    document.getElementById('sd-link').onclick = () => {
+      // 相对于 pages/footprint.html 的路径，跳到 City/San-Diego.html
+      window.location.href = '../City/San-Diego.html';
+    };
+  });
+
+  // Canada
+  L.marker([45.4215, -75.6972]).addTo(map)
+          .bindPopup('<b>Canada</b><br><a href="canada.html">暂时无法进入</a>');
+
+  // China
+  L.marker([35.8617, 104.1954]).addTo(map)
+          .bindPopup('<b>China</b><br><a href="china.html">暂时无法进入</a>');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>San Diego · ZHEHAO</title>
+  <style>
+    /* reset & layout */
+    * { margin:0; padding:0; box-sizing:border-box }
+    body { font-family:Arial,sans-serif; background:#f9f9f9; color:#333 }
+    header { background:#fff; padding:20px 40px; box-shadow:0 2px 5px rgba(0,0,0,0.05) }
+    nav { display:flex; justify-content:space-between; align-items:center }
+    .logo { font-size:24px; font-weight:bold }
+    nav ul { list-style:none; display:flex; gap:20px }
+    nav a { text-decoration:none; color:#333; font-weight:500 }
+    nav a:hover { text-decoration:underline }
+
+    main {
+      padding:40px;
+      max-width:900px;
+      margin:0 auto;
+    }
+    h1 { margin-bottom:20px }
+
+    /* gallery grid */
+    .gallery {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap:16px;
+    }
+    .gallery img {
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      border-radius:8px;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      transition:transform .2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* lightbox */
+    .lightbox {
+      display:none;
+      position:fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.8);
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      z-index:1000;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius:4px;
+      object-fit:contain;
+    }
+    .lightbox .close {
+      position:absolute;
+      top:20px; right:30px;
+      font-size:40px;
+      color:#fff;
+      cursor:pointer;
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+      color:#777;
+      border-top:1px solid #eee;
+      margin-top:40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">ZHEHAO</div>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../Pages/memory.html">Memory</a></li>
+      <li><a href="../Pages/videos.html">Videos</a></li>
+      <li><a href="../Pages/footprint-map.html">Footprint Map</a></li>
+      <li><a href="../Pages/about.html">About me</a></li>
+      <li><a href="../Pages/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>San Diego, USA</h1>
+  <!-- <p>欢迎来到 San Diego，这里是我在美国的足迹之一。</p> -->
+  <div class="gallery">
+    <img src="../../Photos/加州best-1.jpg" alt="San Diego 1">
+    <img src="../../Photos/加州best-2.jpg" alt="San Diego 2">
+    <img src="../../Photos/加州best-3.jpg" alt="San Diego 3">
+    <img src="../../Photos/加州美术馆.jpg" alt="San Diego Art Museum">
+    <img src="../../Photos/加州海边2.jpg" alt="San Diego Beach 2">
+    <img src="../../Photos/加州海边3.jpg" alt="San Diego Beach 3">
+    <img src="../../Photos/加州海边4.jpg" alt="San Diego Beach 4">
+    <img src="../../Photos/海边女生生日.jpg" alt="Birthday by the Sea">
+    <img src="../../Photos/加州海边1.jpg" alt="San Diego Beach 1">
+    <img src="../../Photos/加州海岸二人.jpg" alt="Couple by the Shore">
+    <img src="../../Photos/UCSD房子.jpg" alt="UCSD Campus">
+    <img src="../../Photos/游泳池.DNG" alt="Poolside">
+  </div>
+</main>
+
+<footer>© ZHEHAO 2025</footer>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="close" id="lightbox-close">&times;</div>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // lightbox logic
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.gallery img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lightbox.style.display = 'flex';
+    });
+  });
+  lbClose.addEventListener('click', () => lightbox.style.display = 'none');
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) lightbox.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>

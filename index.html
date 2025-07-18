@@ -1,42 +1,175 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Zhehao</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ZHEHAO Home</title>
   <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      background-color: #f0f0f0;
+    /* ========== Reset & Nav ========== */
+    * { margin:0; padding:0; box-sizing:border-box }
+    body { font-family:Arial,sans-serif; background:#f9f9f9; color:#333 }
+    header { background:#fff; padding:20px 40px; box-shadow:0 2px 5px rgba(0,0,0,0.05) }
+    nav { display:flex; justify-content:space-between; align-items:center }
+    .logo { font-size:24px; font-weight:bold }
+    nav ul { list-style:none; display:flex; gap:20px }
+    nav a { text-decoration:none; color:#333; font-weight:500 }
+    nav a:hover { text-decoration:underline }
+
+    /* ========== Carousel ========== */
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 9/6;
+      margin: 40px auto;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    h1 {
-      margin-top: 30px;
-    }
-    .gallery {
+    .slides {
       display: flex;
-      flex-wrap: wrap;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    .slides img {
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .arrow {
+      position: absolute;
+      top:50%;
+      transform: translateY(-50%);
+      font-size: 32px;
+      color: rgba(255,255,255,0.9);
+      padding: 5px 12px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      z-index: 5;
+    }
+    .arrow.left  { left: 10px }
+    .arrow.right { right: 10px }
+
+    /* ========== Lightbox ========== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.8);
       justify-content: center;
-      gap: 20px;
-      padding: 40px;
+      align-items: center;
+      padding: 20px;
+      z-index: 1000;
     }
-    .gallery img {
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      border-radius: 4px;
     }
-    .gallery img:hover {
-      transform: scale(1.05);
+    .lightbox .close {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
     }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #eee;
+      margin-top: 40px;
+    }
+
+    main > h1 {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 2em;      /* 可选，调大标题 */
+    }
+
   </style>
 </head>
 <body>
-<h1>My Photos</h1>
-<div class="gallery">
-  <img src="Photos/加州1.jpg" alt="照片1">
-  <img src="Photos/加州2.jpg" alt="照片2">
-  <img src="Photos/加州3.jpg" alt="照片3">
-  <!-- 想加更多就复制一行换文件名即可 -->
+
+<header>
+  <nav>
+    <div class="logo">ZHEHAO</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Pages/memory.html">Memory</a></li>
+      <li><a href="pages/videos.html">Videos</a></li>
+      <li><a href="Pages/footprint-map.html">Footprint Map</a></li>
+      <li><a href="pages/about.html">About me</a></li>
+      <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Precious moments</h1>
+  <div class="carousel">
+    <div class="slides">
+      <img src="Photos/加州best-1.jpg" data-full="Photos/加州best-1.jpg" alt="Photo 1">
+      <img src="Photos/加州best-2.jpg" data-full="Photos/加州best-2.jpg" alt="Photo 2">
+      <img src="Photos/加州best-3.jpg" data-full="Photos/加州best-2.jpg" alt="Photo 3">
+    </div>
+    <div class="arrow left">&#10094;</div>
+    <div class="arrow right">&#10095;</div>
+  </div>
+</main>
+
+<footer>© ZHEHAO 2025</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="close" id="lightbox-close">&times;</div>
+  <img src="" id="lightbox-img" alt="">
 </div>
+
+<script>
+  (function(){
+    const slides = document.querySelector('.slides'),
+            imgs   = slides.querySelectorAll('img'),
+            left   = document.querySelector('.arrow.left'),
+            right  = document.querySelector('.arrow.right'),
+            lb     = document.getElementById('lightbox'),
+            lbImg  = document.getElementById('lightbox-img'),
+            lbClose= document.getElementById('lightbox-close');
+    let idx=0, timer;
+
+    function show(i){
+      idx=(i+imgs.length)%imgs.length;
+      slides.style.transform=`translateX(${-100*idx}%)`;
+    }
+    function play(){ timer = setInterval(()=>show(idx+1),4000); }
+    function pause(){ clearInterval(timer); }
+    left.onclick = ()=>{ pause(); show(idx-1); play(); };
+    right.onclick= ()=>{ pause(); show(idx+1); play(); };
+    slides.addEventListener('mouseenter', pause);
+    slides.addEventListener('mouseleave', play);
+
+    imgs.forEach(img=>{
+      img.onclick = ()=>{
+        const src = img.dataset.full || img.src;
+        lbImg.src = src;
+        lb.style.display = 'flex';
+      }
+    });
+    lbClose.onclick = ()=> lb.style.display='none';
+    lb.onclick = e=>{ if(e.target===lb) lb.style.display='none'; };
+
+    show(0);
+    play();
+  })();
+</script>
+
 </body>
 </html>

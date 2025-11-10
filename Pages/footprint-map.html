@@ -121,21 +121,31 @@
   // 用一个 span 作为“点击进入”的触发器
   sdMarker.bindPopup(
           '<b>San Diego, USA</b><br>' +
-          '<span id="sd-link" style="color:#0066cc; text-decoration:underline; cursor:pointer;">点击进入</span>'
+          '<span id="jump-link" style="color:#0066cc; text-decoration:underline; cursor:pointer;">点击进入</span>'
   );
 
   // 当弹窗打开时，给它绑定跳转事件
   sdMarker.on('popupopen', () => {
-    document.getElementById('sd-link').onclick = () => {
+    document.getElementById('jump-link').onclick = () => {
       // 相对于 pages/footprint.html 的路径，跳到 City/San-Diego.html
       window.location.href = '../City/San-Diego.html';
     };
   });
 
   // Halifax, Canada
+  const halifaxMarker = L.marker([44.645, -63.572]).addTo(map);
 
-  L.marker([44.645, -63.572]).addTo(map)
-          .bindPopup('<b>Canada</b><br><a href="canada.html">暂时无法进入</a>');
+  halifaxMarker.bindPopup(
+      '<b>Halifax, Canada</b><br>' +
+      '<span id="jump-link" style="color:#0066cc; text-decoration:underline; cursor:pointer;">点击进入</span>'
+  );
+
+  halifaxMarker.on('popupopen', () => {
+      document.getElementById('jump-link').onclick = () => {
+          window.location.href = '../City/Halifax.html';
+      };
+  });
+
 
   // China
   L.marker([35.8617, 104.1954]).addTo(map)

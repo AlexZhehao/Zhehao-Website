@@ -151,7 +151,7 @@
       idx=(i+imgs.length)%imgs.length;
       slides.style.transform=`translateX(${-100*idx}%)`;
     }
-    function play(){ timer = setInterval(()=>show(idx+1),4000); }
+    function play(){ timer = setInterval(()=>show(idx+1),3500); }
     function pause(){ clearInterval(timer); }
     left.onclick = ()=>{ pause(); show(idx-1); play(); };
     right.onclick= ()=>{ pause(); show(idx+1); play(); };

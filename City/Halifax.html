@@ -1,40 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="哈利法克斯(Halifax)的美丽秋景 - ZHEHAO的旅行足迹" />
+    <!-- Favicon 支持 -->
+    <link rel="icon" href="/favicon.ico" sizes="any"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <!-- Apple Touch Icon (iOS/iPadOS) -->
+    <link rel="apple-touch-icon" href="/favicon.ico"/>
     <title>Halifax</title>
     <style>
+        /* ========== CSS Variables ========== */
+        :root {
+            /* 颜色系统 */
+            --color-primary: #333;
+            --color-secondary: #777;
+            --color-bg: #f9f9f9;
+            --color-white: #fff;
+            --color-border: #eee;
+            --color-overlay-dark: rgba(0,0,0,0.8);
+            --color-shadow-light: rgba(0,0,0,0.05);
+            --color-shadow-medium: rgba(0,0,0,0.1);
+
+            /* 间距系统 */
+            --spacing-md: 20px;
+            --spacing-lg: 40px;
+
+            /* 阴影系统 */
+            --shadow-sm: 0 2px 5px var(--color-shadow-light);
+            --shadow-md: 0 4px 10px var(--color-shadow-medium);
+
+            /* 圆角 */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+
+            /* 字体大小 */
+            --font-size-sm: 14px;
+            --font-size-md: 24px;
+            --font-size-xl: 40px;
+
+            /* Gallery */
+            --gallery-gap: 16px;
+            --gallery-min-width: 250px;
+            --gallery-img-height: 200px;
+        }
+
         /* reset & layout */
         * { margin:0; padding:0; box-sizing:border-box }
-        body { font-family:Arial,sans-serif; background:#f9f9f9; color:#333 }
-        header { background:#fff; padding:20px 40px; box-shadow:0 2px 5px rgba(0,0,0,0.05) }
+        body { font-family:Arial,sans-serif; background:var(--color-bg); color:var(--color-primary) }
+        header { background:var(--color-white); padding:var(--spacing-md) var(--spacing-lg); box-shadow:var(--shadow-sm) }
         nav { display:flex; justify-content:space-between; align-items:center }
-        .logo { font-size:24px; font-weight:bold }
-        nav ul { list-style:none; display:flex; gap:20px }
-        nav a { text-decoration:none; color:#333; font-weight:500 }
+        .logo { font-size:var(--font-size-md); font-weight:bold }
+        nav ul { list-style:none; display:flex; gap:var(--spacing-md) }
+        nav a { text-decoration:none; color:var(--color-primary); font-weight:500 }
         nav a:hover { text-decoration:underline }
 
         main {
-            padding:40px;
+            padding:var(--spacing-lg);
             max-width:900px;
             margin:0 auto;
         }
-        h1 { margin-bottom:20px }
+        h1 { margin-bottom:var(--spacing-md) }
 
         /* gallery grid */
         .gallery {
             display:grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap:16px;
+            grid-template-columns: repeat(auto-fill, minmax(var(--gallery-min-width), 1fr));
+            gap:var(--gallery-gap);
         }
         .gallery img {
             width:100%;
-            height:200px;
+            height:var(--gallery-img-height);
             object-fit:cover;
-            border-radius:8px;
+            border-radius:var(--radius-md);
             cursor:pointer;
-            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+            box-shadow:var(--shadow-md);
             transition:transform .2s;
         }
         .gallery img:hover {
@@ -46,33 +87,34 @@
             display:none;
             position:fixed;
             top:0; left:0; right:0; bottom:0;
-            background: rgba(0,0,0,0.8);
+            background: var(--color-overlay-dark);
             justify-content:center;
             align-items:center;
-            padding:20px;
+            padding:var(--spacing-md);
             z-index:1000;
         }
         .lightbox img {
             max-width: 90vw;
             max-height: 90vh;
-            border-radius:4px;
+            border-radius:var(--radius-sm);
             object-fit:contain;
         }
         .lightbox .close {
             position:absolute;
-            top:20px; right:30px;
-            font-size:40px;
-            color:#fff;
+            top:var(--spacing-md);
+            right:30px;
+            font-size:var(--font-size-xl);
+            color:var(--color-white);
             cursor:pointer;
         }
 
         footer {
             text-align:center;
-            padding:20px;
-            font-size:14px;
-            color:#777;
-            border-top:1px solid #eee;
-            margin-top:40px;
+            padding:var(--spacing-md);
+            font-size:var(--font-size-sm);
+            color:var(--color-secondary);
+            border-top:1px solid var(--color-border);
+            margin-top:var(--spacing-lg);
         }
     </style>
 </head>
@@ -95,15 +137,15 @@
 <main>
     <h1>Halifax, Canada</h1>
     <div class="gallery">
-        <img src="../../Photos/Halifax/哈法秋天-1.jpg" alt="Halifax 1">
-        <img src="../../Photos/Halifax/哈法秋天-2.jpeg" alt="Halifax 2">
-        <img src="../../Photos/Halifax/哈法秋天-3.jpeg" alt="Halifax 3">
-        <img src="../../Photos/Halifax/树-1.jpeg" alt="Halifax 4">
-        <img src="../../Photos/Halifax/哈法秋天-竖-1.jpg" alt="Halifax 5">
-        <img src="../../Photos/Halifax/哈法秋天-竖-2.jpeg" alt="Halifax 6">
-        <img src="../../Photos/Halifax/哈法秋天-竖-3.jpeg" alt="Halifax 7">
-        <img src="../../Photos/Halifax/哈法秋天-竖-4.jpeg" alt="Halifax 8">
-        <img src="../../Photos/Halifax/哈法秋天-竖-5.jpg" alt="Halifax 9">
+        <img src="../../Photos/Halifax/哈法秋天-1.jpg" alt="哈利法克斯秋天美景" width="250" height="200">
+        <img src="../../Photos/Halifax/哈法秋天-2.jpeg" alt="哈利法克斯秋天美景" width="250" height="200" loading="lazy">
+        <img src="../../Photos/Halifax/哈法秋天-3.jpeg" alt="哈利法克斯秋天美景" width="250" height="200" loading="lazy">
+        <img src="../../Photos/Halifax/树-1.jpeg" alt="哈利法克斯秋天树木" width="250" height="200" loading="lazy">
+        <img src="../../Photos/Halifax/哈法秋天-竖-1.jpg" alt="哈利法克斯秋天美景" width="250" height="200" loading="lazy">
+        <img src="../../Photos/Halifax/哈法秋天-竖-2.jpeg" alt="哈利法克斯秋天美景" width="250" height="200" loading="lazy">
+        <img src="../../Photos/Halifax/哈法秋天-竖-3.jpeg" alt="哈利法克斯秋天美景" width="250" height="200" loading="lazy">
+        <img src="../../Photos/Halifax/哈法秋天-竖-4.jpeg" alt="哈利法克斯秋天美景" width="250" height="200" loading="lazy">
+        <img src="../../Photos/Halifax/哈法秋天-竖-5.jpg" alt="哈利法克斯秋天美景" width="250" height="200" loading="lazy">
     </div>
 </main>
 
@@ -116,21 +158,68 @@
 </div>
 
 <script>
-    // lightbox logic
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightbox-img');
-    const lbClose = document.getElementById('lightbox-close');
+    (function() {
+        // 检查必需元素
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbClose = document.getElementById('lightbox-close');
+        const galleryImgs = document.querySelectorAll('.gallery img');
 
-    document.querySelectorAll('.gallery img').forEach(img => {
-        img.addEventListener('click', () => {
-            lbImg.src = img.src;
-            lightbox.style.display = 'flex';
+        if (!lightbox || !lbImg || !lbClose) {
+            console.error('Lightbox: Required elements not found');
+            return;
+        }
+
+        if (galleryImgs.length === 0) {
+            console.warn('Gallery: No images found');
+            return;
+        }
+
+        // 为每张图片添加点击事件和错误处理
+        galleryImgs.forEach((img) => {
+            // 图片加载失败处理
+            img.onerror = function() {
+                console.error(`Failed to load image: ${this.src}`);
+                this.style.opacity = '0.3';
+            };
+
+            // 点击打开 lightbox
+            img.addEventListener('click', () => {
+                try {
+                    if (!img.src) {
+                        console.warn('No image source available');
+                        return;
+                    }
+                    lbImg.src = img.src;
+                    lightbox.style.display = 'flex';
+                } catch(e) {
+                    console.error('Error opening lightbox:', e);
+                }
+            });
         });
-    });
-    lbClose.addEventListener('click', () => lightbox.style.display = 'none');
-    lightbox.addEventListener('click', e => {
-        if (e.target === lightbox) lightbox.style.display = 'none';
-    });
+
+        // 关闭 lightbox
+        if (lbClose) {
+            lbClose.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+        }
+
+        if (lightbox) {
+            lightbox.addEventListener('click', e => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
+        }
+
+        // ESC 键关闭 lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                lightbox.style.display = 'none';
+            }
+        });
+    })();
 </script>
 
 </body>

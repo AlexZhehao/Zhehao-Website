@@ -1,18 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="ZHEHAO的个人主页，记录珍贵时刻、旅行足迹和生活回忆。包含加州和哈利法克斯的精彩照片和视频分享。"/>
+  <!-- Favicon 支持 -->
+  <link rel="icon" href="/favicon.ico" sizes="any"/>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+  <!-- Apple Touch Icon (iOS/iPadOS) -->
+  <link rel="apple-touch-icon" href="/favicon.ico"/>
   <title>ZHEHAO Home</title>
   <style>
+    /* ========== CSS Variables ========== */
+    :root {
+      /* 颜色系统 */
+      --color-primary: #333;
+      --color-secondary: #777;
+      --color-bg: #f9f9f9;
+      --color-white: #fff;
+      --color-border: #eee;
+      --color-overlay: rgba(0,0,0,0.4);
+      --color-overlay-hover: rgba(0,0,0,0.6);
+      --color-overlay-dark: rgba(0,0,0,0.8);
+      --color-shadow-light: rgba(0,0,0,0.05);
+      --color-shadow-medium: rgba(0,0,0,0.1);
+
+      /* 间距系统 */
+      --spacing-xs: 5px;
+      --spacing-sm: 10px;
+      --spacing-md: 20px;
+      --spacing-lg: 40px;
+
+      /* 阴影系统 */
+      --shadow-sm: 0 2px 5px var(--color-shadow-light);
+      --shadow-md: 0 4px 10px var(--color-shadow-medium);
+
+      /* 圆角 */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+
+      /* 过渡动画 */
+      --transition-normal: 0.5s ease;
+
+      /* 字体大小 */
+      --font-size-sm: 14px;
+      --font-size-md: 24px;
+      --font-size-lg: 32px;
+      --font-size-xl: 40px;
+    }
+
     /* ========== Reset & Nav ========== */
     * { margin:0; padding:0; box-sizing:border-box }
-    body { font-family:Arial,sans-serif; background:#f9f9f9; color:#333 }
-    header { background:#fff; padding:20px 40px; box-shadow:0 2px 5px rgba(0,0,0,0.05) }
+    body { font-family:Arial,sans-serif; background:var(--color-bg); color:var(--color-primary) }
+    header { background:var(--color-white); padding:var(--spacing-md) var(--spacing-lg); box-shadow:var(--shadow-sm) }
     nav { display:flex; justify-content:space-between; align-items:center }
-    .logo { font-size:24px; font-weight:bold }
-    nav ul { list-style:none; display:flex; gap:20px }
-    nav a { text-decoration:none; color:#333; font-weight:500 }
+    .logo { font-size:var(--font-size-md); font-weight:bold }
+    nav ul { list-style:none; display:flex; gap:var(--spacing-md) }
+    nav a { text-decoration:none; color:var(--color-primary); font-weight:500 }
     nav a:hover { text-decoration:underline }
 
     /* ========== Carousel ========== */
@@ -21,15 +65,15 @@
       width: 100%;
       max-width: 1200px;
       aspect-ratio: 9/6;
-      margin: 40px auto;
+      margin: var(--spacing-lg) auto;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
     }
     .slides {
       display: flex;
       height: 100%;
-      transition: transform 0.5s ease;
+      transition: transform var(--transition-normal);
     }
     .slides img {
       flex-shrink: 0;
@@ -42,27 +86,30 @@
       position: absolute;
       top:50%;
       transform: translateY(-50%);
-      font-size: 32px;
+      font-size: var(--font-size-lg);
       color: rgba(255,255,255,0.9);
-      padding: 5px 12px;
-      background: rgba(0,0,0,0.4);
-      border-radius: 4px;
+      padding: var(--spacing-xs) 12px;
+      background: var(--color-overlay);
+      border: none;
+      border-radius: var(--radius-sm);
       cursor: pointer;
       user-select: none;
       z-index: 5;
     }
-    .arrow.left  { left: 10px }
-    .arrow.right { right: 10px }
+    .arrow:hover { background: var(--color-overlay-hover); }
+    .arrow:focus { outline: 2px solid var(--color-white); outline-offset: 2px; }
+    .arrow.left  { left: var(--spacing-sm) }
+    .arrow.right { right: var(--spacing-sm) }
 
     /* ========== Lightbox ========== */
     .lightbox {
       display: none;
       position: fixed;
       top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.8);
+      background: var(--color-overlay-dark);
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: var(--spacing-md);
       z-index: 1000;
     }
     .lightbox img {
@@ -70,23 +117,24 @@
       max-height: 90vh;
       width: auto;
       height: auto;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
     }
     .lightbox .close {
       position: absolute;
-      top: 20px; right: 30px;
-      font-size: 40px;
-      color: #fff;
+      top: var(--spacing-md);
+      right: 30px;
+      font-size: var(--font-size-xl);
+      color: var(--color-white);
       cursor: pointer;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #777;
-      border-top: 1px solid #eee;
-      margin-top: 40px;
+      padding: var(--spacing-md);
+      font-size: var(--font-size-sm);
+      color: var(--color-secondary);
+      border-top: 1px solid var(--color-border);
+      margin-top: var(--spacing-lg);
     }
 
     main > h1 {
@@ -117,14 +165,14 @@
     <h1>Precious moments</h1>
     <div class="carousel">
         <div class="slides">
-            <img src="Photos/加州best-1.jpg" data-full="Photos/加州best-1.jpg" alt="Photo 1">
-            <img src="Photos/加州best-2.jpg" data-full="Photos/加州best-2.jpg" alt="Photo 2">
-            <img src="Photos/加州best-3.jpg" data-full="Photos/加州best-2.jpg" alt="Photo 3">
-            <img src="Photos/Halifax/哈法秋天-1.jpg" data-full="Photos/Halifax/哈法秋天-1.jpg" alt="Photo 4">
-            <img src="Photos/Halifax/哈法秋天-2.jpeg" data-full="Photos/Halifax/哈法秋天-2.jpeg" alt="Photo 5">
+            <img src="Photos/加州best-1.jpg" data-full="Photos/加州best-1.jpg" alt="加州风景" width="1200" height="800">
+            <img src="Photos/加州best-2.jpg" data-full="Photos/加州best-2.jpg" alt="加州风景" width="1200" height="800" loading="lazy">
+            <img src="Photos/加州best-3.jpg" data-full="Photos/加州best-3.jpg" alt="加州风景" width="1200" height="800" loading="lazy">
+            <img src="Photos/Halifax/哈法秋天-1.jpg" data-full="Photos/Halifax/哈法秋天-1.jpg" alt="哈利法克斯秋景" width="1200" height="800" loading="lazy">
+            <img src="Photos/Halifax/哈法秋天-2.jpeg" data-full="Photos/Halifax/哈法秋天-2.jpeg" alt="哈利法克斯秋景" width="1200" height="800" loading="lazy">
         </div>
-        <div class="arrow left">&#10094;</div>
-        <div class="arrow right">&#10095;</div>
+        <button class="arrow left" aria-label="上一张图片">&#10094;</button>
+        <button class="arrow right" aria-label="下一张图片">&#10095;</button>
     </div>
 </main>
 
@@ -138,36 +186,147 @@
 
 <script>
   (function(){
-    const slides = document.querySelector('.slides'),
-            imgs   = slides.querySelectorAll('img'),
-            left   = document.querySelector('.arrow.left'),
-            right  = document.querySelector('.arrow.right'),
-            lb     = document.getElementById('lightbox'),
-            lbImg  = document.getElementById('lightbox-img'),
-            lbClose= document.getElementById('lightbox-close');
-    let idx=0, timer;
-
-    function show(i){
-      idx=(i+imgs.length)%imgs.length;
-      slides.style.transform=`translateX(${-100*idx}%)`;
+    // 1. 检查必需元素是否存在
+    const slides = document.querySelector('.slides');
+    if (!slides) {
+      console.warn('Carousel: .slides element not found');
+      return; // 安全退出，不影响页面其他功能
     }
-    function play(){ timer = setInterval(()=>show(idx+1),3500); }
-    function pause(){ clearInterval(timer); }
-    left.onclick = ()=>{ pause(); show(idx-1); play(); };
-    right.onclick= ()=>{ pause(); show(idx+1); play(); };
+
+    const imgs   = slides.querySelectorAll('img'),
+          left   = document.querySelector('.arrow.left'),
+          right  = document.querySelector('.arrow.right'),
+          lb     = document.getElementById('lightbox'),
+          lbImg  = document.getElementById('lightbox-img'),
+          lbClose= document.getElementById('lightbox-close');
+
+    // 检查是否有图片
+    if (imgs.length === 0) {
+      console.warn('Carousel: No images found');
+      return;
+    }
+
+    let idx = 0, timer;
+
+    // 显示指定索引的幻灯片（带错误处理）
+    function show(i){
+      try {
+        idx = (i + imgs.length) % imgs.length;
+        slides.style.transform = `translateX(${-100 * idx}%)`;
+      } catch(e) {
+        console.error('Carousel: Error showing slide', e);
+      }
+    }
+
+    // 开始自动播放（先清理旧定时器）
+    function play(){
+      pause(); // 确保没有重复的定时器
+      timer = setInterval(() => show(idx + 1), 3500);
+    }
+
+    // 暂停自动播放
+    function pause(){
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    // 2. 按钮点击事件（检查元素是否存在）
+    if (left) {
+      left.onclick = () => {
+        pause();
+        show(idx - 1);
+        play();
+      };
+    }
+
+    if (right) {
+      right.onclick = () => {
+        pause();
+        show(idx + 1);
+        play();
+      };
+    }
+
+    // 鼠标悬停控制
     slides.addEventListener('mouseenter', pause);
     slides.addEventListener('mouseleave', play);
 
-    imgs.forEach(img=>{
-      img.onclick = ()=>{
-        const src = img.dataset.full || img.src;
-        lbImg.src = src;
-        lb.style.display = 'flex';
+    // 3. 图片点击和加载错误处理
+    imgs.forEach((img, i) => {
+      // 图片加载失败处理
+      img.onerror = function() {
+        console.error(`Carousel: Failed to load image - ${this.src}`);
+        this.style.opacity = '0.3'; // 降低透明度显示加载失败
+      };
+
+      // 点击打开 Lightbox
+      img.onclick = () => {
+        try {
+          if (!lb || !lbImg) {
+            console.warn('Lightbox: Elements not found');
+            return;
+          }
+
+          const src = img.dataset.full || img.src;
+          if (!src) {
+            console.warn('Lightbox: No image source available');
+            return;
+          }
+
+          lbImg.src = src;
+          lb.style.display = 'flex';
+        } catch(e) {
+          console.error('Lightbox: Error opening', e);
+        }
+      };
+    });
+
+    // 4. Lightbox 关闭事件（检查元素存在）
+    if (lbClose) {
+      lbClose.onclick = () => {
+        if (lb) lb.style.display = 'none';
+      };
+    }
+
+    if (lb) {
+      lb.onclick = (e) => {
+        if (e.target === lb) lb.style.display = 'none';
+      };
+    }
+
+    // 5. 键盘导航支持
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        pause();
+        show(idx - 1);
+        play();
+      } else if (e.key === 'ArrowRight') {
+        pause();
+        show(idx + 1);
+        play();
+      } else if (e.key === 'Escape' && lb && lb.style.display === 'flex') {
+        // ESC 键关闭 Lightbox
+        lb.style.display = 'none';
       }
     });
-    lbClose.onclick = ()=> lb.style.display='none';
-    lb.onclick = e=>{ if(e.target===lb) lb.style.display='none'; };
 
+    // 6. 页面卸载时清理定时器（防止内存泄漏）
+    window.addEventListener('beforeunload', () => {
+      pause();
+    });
+
+    // 7. 页面可见性变化处理（节省资源）
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        pause(); // 页面不可见时暂停
+      } else {
+        play(); // 页面重新可见时继续播放
+      }
+    });
+
+    // 初始化
     show(0);
     play();
   })();

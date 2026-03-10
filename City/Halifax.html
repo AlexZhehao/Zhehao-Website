@@ -114,6 +114,70 @@
             border-top:1px solid var(--color-border);
             margin-top:var(--spacing-lg);
         }
+
+        /* ========== Mobile Menu ========== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--color-primary);
+            padding: 5px;
+        }
+
+        /* ========== Responsive Design ========== */
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            nav { position: relative; }
+            .menu-toggle { display: block; }
+
+            nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-white);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                z-index: 100;
+            }
+
+            nav ul.active {
+                max-height: 400px;
+                border-top: 1px solid var(--color-border);
+            }
+
+            nav ul li {
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+            }
+
+            main {
+                padding: var(--spacing-md);
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 20px; }
+            h1 { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -121,7 +185,8 @@
 <header>
     <nav>
         <div class="logo">ZHEHAO</div>
-        <ul>
+        <button class="menu-toggle" id="menu-toggle" aria-label="切换菜单">&#9776;</button>
+        <ul id="nav-menu">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../Pages/memory.html">Memory</a></li>
             <li><a href="../Pages/videos.html">Videos</a></li>
@@ -156,6 +221,31 @@
 </div>
 
 <script>
+    // 移动端菜单
+    (function(){
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            const menuLinks = navMenu.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
+    })();
+
     (function() {
         // 检查必需元素
         const lightbox = document.getElementById('lightbox');

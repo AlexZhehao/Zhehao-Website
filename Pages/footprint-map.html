@@ -62,6 +62,9 @@
     .logo {
       font-weight: bold;
       font-size: var(--font-size-md);
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
     }
     nav ul {
       list-style: none;
@@ -76,7 +79,10 @@
     }
     nav a:hover {
       text-decoration: underline;
+      text-underline-offset: 6px;
+      font-weight: bold;
     }
+    .logo:hover { text-decoration: none; font-weight: bold; }
     main {
       padding: 30px;
       display: flex;
@@ -176,7 +182,7 @@
 
 <header>
   <nav>
-    <div class="logo">ZHEHAO</div>
+    <a href="../index.html" class="logo">ZHEHAO</a>
     <button class="menu-toggle" id="menu-toggle" aria-label="切换菜单">&#9776;</button>
     <ul id="nav-menu">
       <li><a href="../index.html">Home</a></li>

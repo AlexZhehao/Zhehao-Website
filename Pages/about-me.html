@@ -40,10 +40,11 @@
         body { font-family: Arial, sans-serif; background: var(--color-bg); color: var(--color-primary); }
         header { background: var(--color-white); padding: var(--spacing-md) var(--spacing-lg); box-shadow: var(--shadow-sm); }
         nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: bold; font-size: var(--font-size-md); }
+        .logo { font-weight: bold; font-size: var(--font-size-md); text-decoration: none; color: inherit; cursor: pointer; }
         nav ul { list-style: none; display: flex; gap: var(--spacing-md); }
         nav a { text-decoration: none; color: var(--color-primary); font-weight: 500; }
-        nav a:hover { text-decoration: underline; }
+        nav a:hover { text-decoration: underline; text-underline-offset: 6px; font-weight: bold; }
+        .logo:hover { text-decoration: none; font-weight: bold; }
         main { padding: var(--spacing-lg); max-width: 800px; margin: 0 auto; }
         h2 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-md); }
         .memory-list { list-style: disc inside; color: var(--color-text-light); }
@@ -110,7 +111,7 @@
 <body>
 <header>
     <nav>
-        <div class="logo">ZHEHAO</div>
+        <a href="../index.html" class="logo">ZHEHAO</a>
         <button class="menu-toggle" id="menu-toggle" aria-label="切换菜单">&#9776;</button>
         <ul id="nav-menu">
             <li><a href="../index.html">Home</a></li>
